@@ -38,13 +38,13 @@
                                             <div class="col-xxs-12 col-xs-6 mt alternate">
                                                 <div class="input-field">
                                                     <label for="date-start">Ida:</label>
-                                                    <input type="date" class="form-control" id="data_ida" name="data_ida" placeholder="dd/mm/yyyy" />
+                                                    <input type="date" class="form-control" id="dataIda" name="dataIda" placeholder="dd/mm/yyyy" />
                                                 </div>
                                             </div>
                                             <div class="col-xxs-12 col-xs-6 mt alternate">
                                                 <div class="input-field">
                                                     <label for="date-end">Volta:</label>
-                                                    <input type="date" class="form-control" id="data_volta" name="data_volta" placeholder="dd/mm/yyyy" />
+                                                    <input type="date" class="form-control" id="dataRetorno" name="dataRetorno" placeholder="dd/mm/yyyy" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 mt">

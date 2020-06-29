@@ -26,7 +26,7 @@
                                             <div class="col-sm-6">
                                                 <div class="input-field">
                                                     <label for="from">CPF / CNPJ:</label>
-                                                    <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" />
+                                                    <input type="text" class="form-control" id="cpf_cnpj" name="cpfCnpj" />
                                                 </div>
                                             </div>
                                         </div>
@@ -52,8 +52,8 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="input-field">
-                                                    <label for="from">Endereço:</label>
-                                                    <input type="text" class="form-control" id="endereco" name="endereco" />
+                                                    <label for="from">Rua:</label>
+                                                    <input type="text" class="form-control" id="rua" name="rua" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -86,8 +86,8 @@
                                         <div id="hidden-inputs">
                                             <input type="hidden" id='origem' name='origem' value="<?php echo $_GET['origem'] ?>" />
                                             <input type="hidden" id='destino' name='destino' value="<?php echo $_GET['destino'] ?>" />
-                                            <input type="hidden" id='data_ida' name='data_ida' value="<?php echo $_GET['data_ida'] ?>" />
-                                            <input type="hidden" id='data_volta' name='data_volta' value="<?php echo $_GET['data_volta'] ?>" />
+                                            <input type="hidden" id='dataIda' name='dataIda' value="<?php echo $_GET['dataIda'] ?>" />
+                                            <input type="hidden" id='dataRetorno' name='dataRetorno' value="<?php echo $_GET['dataRetorno'] ?>" />
                                             <input type="hidden" id='classe' name='classe' value="<?php echo $_GET['classe'] ?>" />
                                             <input type="hidden" id='adultos' name='adultos' value="<?php echo $_GET['adultos'] ?>" />
                                             <input type="hidden" id='criancas' name='criancas' value="<?php echo $_GET['criancas'] ?>" />
