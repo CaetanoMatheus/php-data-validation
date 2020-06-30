@@ -1,11 +1,11 @@
 <?php
 
-class ValidadorCpf
+class ValidadorCpf extends Validador
 {
     public function cpfValido(string $cpf): bool
     {
         return $this->isCpf($cpf) === true
-            && $this->verificaNumerosIguais($cpf) === true
+            && $this->verificaNumerosIguais($cpf, 11) === true
             && $this->validarDigitos($cpf) === true
         ? true
         : false;
@@ -13,7 +13,7 @@ class ValidadorCpf
 
     private function isCpf(string $cpf): bool
     {
-        $regexCpf = '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{}$/';
+        $regexCpf = '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/';
         return preg_match($regexCpf, $cpf);
     }
 
@@ -22,16 +22,6 @@ class ValidadorCpf
         return str_replace(['.', '-'], '', $cpf);
     }
 
-    public function verificaNumerosIguais(string $cpf): bool
-    {
-        $cpf = $this->removeFormatacao($cpf);
-        for ($i = 0; $i <= 11; $i++) {
-            if (str_repeat($i, 11) === $cpf) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private function calculaPrimeiroDigito(string $cpf): int
     {
@@ -39,7 +29,7 @@ class ValidadorCpf
         for ($i = 0, $peso = 10; $i <= 8; $i++, $peso--) {
             $digito += $cpf[$i] * $peso;
         }
-        return (int) ($digito % 11) < 2 ? 0 : 11 - ($digito % 11);
+        return $this->calculaDigito($digito);
     }
 
     private function calculaSegundoDigito(string $cpf): int
@@ -48,7 +38,7 @@ class ValidadorCpf
         for ($i = 0, $peso = 11; $i <= 9; $i++, $peso--) {
             $digito +=  $cpf[$i] * $peso;
         }
-        return (int) ($digito % 11) < 2 ? 0 : 11 - ($digito % 11);
+        return $this->calculaDigito($digito);
     }
 
     private function validarDigitos(string $cpf): bool
