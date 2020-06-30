@@ -26,7 +26,7 @@
                                             <div class="col-sm-6">
                                                 <div class="input-field">
                                                     <label for="from">CPF / CNPJ:</label>
-                                                    <input type="text" class="form-control" id="cpf_cnpj" name="cpfCnpj" />
+                                                    <input type="text" class="form-control" id="cpfCnpj" name="cpfCnpj" />
                                                 </div>
                                             </div>
                                         </div>

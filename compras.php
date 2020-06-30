@@ -44,6 +44,9 @@
                             <?= $cliente->getTelefone() ?>
                           </td>
                           <td class="text-center">
+                            <?= $cliente->getEmail() ?>
+                          </td>
+                          <td class="text-center">
                             <?= $viagem->getDataIda() ?>
                           </td>
                           <td class="text-center">

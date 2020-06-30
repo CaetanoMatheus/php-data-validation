@@ -48,7 +48,7 @@ if ($_POST) {
             $criancas,
             $preco
         );
-    } catch (InvalidArgumentException $exception) {
+    } catch (Exception $exception) {
         echo "<script>alert({$exception->getMessage()})</script>";
         echo "<script>history.back()</script>";
     }

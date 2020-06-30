@@ -2,7 +2,6 @@
 
 class Cliente
 {
-
     private string $nome;
     private string $cpfCnpj;
     private string $telefone;
@@ -25,10 +24,15 @@ class Cliente
         string $numero,
         string $cidade,
         string $uf
-    )
-    {
+    ) {
         if (!$this->cepValido($cep)) {
-            throw new InvalidArgumentException('CEP no formato inválido');
+            throw new Exception('CEP no formato inválido');
+        }
+        if (!$this->telefoneValido($telefone)) {
+            throw new Exception('Telefone no formato inválido');
+        }
+        if (!$this->emailValido($email)) {
+            throw new Exception('Email não é válido');
         }
 
         $this->nome = $nome;
@@ -43,13 +47,27 @@ class Cliente
         $this->uf = $uf;
     }
 
-    public function cepValido(string $cep)
+    public function cepValido(string $cep): bool
     {
         if (strlen($cep) !== 10) {
             return false;
         }
         $regexCep = '/^[0-9]{2}\.[0-9]{3}\-[0-9]{3}$/';
         return preg_match($regexCep, $cep) ? true : false;
+    }
+
+    public function telefoneValido(string $telefone): bool
+    {
+        if (strlen($telefone) !== 15) {
+            return false;
+        }
+        $regexTelefone = '/^\([0-9]{2}\)[0-9]{5}\-[0-9]{4}$/';
+        return preg_match($regexTelefone, str_replace(' ', '', $regexTelefone)) ? true : false;
+    }
+
+    public function emailValido(string $email): bool
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) ? true : false;
     }
 
     public function getNome(): string
