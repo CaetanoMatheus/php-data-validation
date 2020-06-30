@@ -27,6 +27,10 @@ class Cliente
         string $uf
     )
     {
+        if (!$this->cepValido($cep)) {
+            throw new InvalidArgumentException('CEP no formato inválido');
+        }
+
         $this->nome = $nome;
         $this->cpfCnpj = $cpfCnpj;
         $this->telefone = $telefone;
@@ -37,6 +41,15 @@ class Cliente
         $this->numero = $numero;
         $this->cidade = $cidade;
         $this->uf = $uf;
+    }
+
+    public function cepValido(string $cep)
+    {
+        if (strlen($cep) !== 10) {
+            return false;
+        }
+        $regexCep = '/^[0-9]{2}\.[0-9]{3}\-[0-9]{3}$/';
+        return preg_match($regexCep, $cep) ? true : false;
     }
 
     public function getNome(): string

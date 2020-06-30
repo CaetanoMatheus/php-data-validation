@@ -24,26 +24,32 @@ if ($_POST) {
     $criancas = $_POST['criancas'];
     $preco = '1.500,00';
 
-    $cliente = new Cliente(
-        $nome,
-        $cpfCnpj,
-        $telefone,
-        $email,
-        $cep,
-        $rua,
-        $bairro,
-        $numero,
-        $cidade,
-        $uf
-    );
-    $viagem = new Viagem(
-        $origem,
-        $destino,
-        $dataIda,
-        $dataRetorno,
-        $classe,
-        $adultos,
-        $criancas,
-        $preco
-    );
+    try {
+        $cliente = new Cliente(
+            $nome,
+            $cpfCnpj,
+            $telefone,
+            $email,
+            $cep,
+            $rua,
+            $bairro,
+            $numero,
+            $cidade,
+            $uf
+        );
+
+        $viagem = new Viagem(
+            $origem,
+            $destino,
+            $dataIda,
+            $dataRetorno,
+            $classe,
+            $adultos,
+            $criancas,
+            $preco
+        );
+    } catch (InvalidArgumentException $exception) {
+        echo "<script>alert({$exception->getMessage()})</script>";
+        echo "<script>history.back()</script>";
+    }
 }
