@@ -1,5 +1,7 @@
 <?php
 
+require_once 'ValidadorCpf.php';
+
 class Cliente
 {
     private string $nome;
@@ -34,6 +36,9 @@ class Cliente
         if (!$this->emailValido($email)) {
             throw new Exception('Email não é válido');
         }
+        if (!(new ValidadorCpf())->cpfValido($cpfCnpj)) {
+            throw new Exception('CPF não é válido');
+        }
 
         $this->nome = $nome;
         $this->cpfCnpj = $cpfCnpj;
@@ -53,7 +58,7 @@ class Cliente
             return false;
         }
         $regexCep = '/^[0-9]{2}\.[0-9]{3}\-[0-9]{3}$/';
-        return preg_match($regexCep, $cep) ? true : false;
+        return preg_match($regexCep, $cep);
     }
 
     public function telefoneValido(string $telefone): bool
@@ -62,7 +67,7 @@ class Cliente
             return false;
         }
         $regexTelefone = '/^\([0-9]{2}\)[0-9]{5}\-[0-9]{4}$/';
-        return preg_match($regexTelefone, str_replace(' ', '', $regexTelefone)) ? true : false;
+        return preg_match($regexTelefone, str_replace(' ', '', $regexTelefone));
     }
 
     public function emailValido(string $email): bool
